@@ -1,11 +1,11 @@
 import customers from "./customer.js";
 
-//---------- Use-Case 1: Get 'Senior Citizens' by Filtering out other customers
+//------------- Use-Case 1: Get 'Senior Citizens' by Filtering out other customers
 const seniorCitizenCatcher = (person) => person.age > 59;
 const theSeniorsWhoGotBonuses = customers.filter(seniorCitizenCatcher);
 console.log(theSeniorsWhoGotBonuses);
 
-//---------- Use-Case 2: Transform the customer array with a new attribute
+//------------- Use-Case 2: Transform the customer array with a new attribute
 const newAttributeAdded = (person) => {
   // Adding a title to customer
   let title = "";
@@ -29,7 +29,7 @@ const newCustomerList = customers.map(newAttributeAdded);
 
 console.log("[map] Customers With Full Name = ", newCustomerList);
 
-//---------- Use-Case 3: Average age of 'Book' buyers
+//-------------- Use-Case 3: Average age of 'Book' buyers
 let count = 0;
 let totalAgeCount = 0;
 
@@ -52,3 +52,19 @@ let result = customers.reduce(averageAgeBookBuyersGenerator, {
 let averageAge = result.count > 0 ? result.totalAgeCount / result.count : 0;
 
 console.log(`Customer Avg Age Purchased Book: ${Math.floor(averageAge)}`);
+
+//--------------- Use-Case 4: Do we have a Young Customer(age less than 10 years)?
+const doWeHaveYoungCustomer = customers.some((customers) => customers.age < 10);
+console.log(`Some has young customers (Age>10): ${doWeHaveYoungCustomer}`);
+
+//--------------- Use-Case 5: Who's the young customers
+const whoAreTheCusomtersYounger = (person) => {
+  return customers.age > 10;
+};
+console.log(
+  "Found Young Customer:" + customers.find(whoAreTheCusomtersYounger)
+);
+
+//--------------- Use-Case 6: Do we have any customer who purchased more than $500
+const payMoreThan500 = customers.some((customers) => customers.expense > 499);
+console.log(`has anyone purchased more thatn $500: ${payMoreThan500}`);
