@@ -65,6 +65,31 @@ console.log(
   "Found Young Customer:" + customers.find(whoAreTheCusomtersYounger)
 );
 
-//--------------- Use-Case 6: Do we have any customer who purchased more than $500
-const payMoreThan500 = customers.some((customers) => customers.expense > 499);
-console.log(`has anyone purchased more thatn $500: ${payMoreThan500}`);
+//--------------- Use-Case 6: who are the young customers (age > 10)
+const foundYoungCustomer = customers.find((customer) => {
+  return customer.age < 10;
+});
+console.log("[find] Found Young Customer(Age < 10): ", foundYoungCustomer);
+
+//--------------- Use-Case 6: Get the total amount spent by Married Customers
+const marriedCustomers = customers.filter((customer) => {
+  return customer.married;
+});
+
+const expenseMapped = marriedCustomers.map((marriedCustomer) => {
+  return marriedCustomer.expense;
+});
+
+const totalExpenses = expenseMapped.reduce((accum, expense) => {
+  return accum + expense;
+}, 0);
+
+console.log("Total Expense of Married Customers in INR: " + totalExpenses);
+
+//---------Use-Case 7:  Get the total amount spent by people over 50
+const totalAmountSpentBy50 = customers
+  .filter((person) => person.age > 49)
+  .map((person) => person.expense)
+  .reduce((accum, expense) => accum + expense);
+
+console.log("Total expense by people over 50: ", totalAmountSpentBy50);
